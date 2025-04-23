@@ -61,7 +61,6 @@ app.put("/api/v1/products/:id", async (req, res) => {
   }
 })
 
-
 // -----------------------------------------------------------------------
 app.delete("/api/v1/products/:id", async (req, res) => {
   const { id } = req.params
