@@ -10,6 +10,17 @@ const app = express()
 
 app.use(express.json())
 
+app.get("/api/v1/getproducts", async (req, res) => {
+  try {
+    const products = await Product.find({})
+    res.status(200).json({ success: true, data: products })
+  } catch (error) {
+    console.log("error in feaching products!", error.message)
+    res.status(500).json({ success: false, message: "Server Error!" })
+  }
+})
+
+// ---------------------------------------------------------------------
 app.post("/api/v1/products", async (req, res) => {
   const product = req.body
 
@@ -29,7 +40,7 @@ app.post("/api/v1/products", async (req, res) => {
 
 })
 
-
+// -----------------------------------------------------------------------
 app.delete("/api/v1/products/:id", async (req, res) => {
   const { id } = req.params
   console.log("id", id)
@@ -38,6 +49,7 @@ app.delete("/api/v1/products/:id", async (req, res) => {
     await Product.findByIdAndDelete(id)
     res.status(200).json({ success: true, message: "Product deleted successfuly." })
   } catch (error) {
+    console.log("Error  indeleting produc :", error.message)
     res.status(404).json({ success: false, message: "product not found!" })
   }
 })
