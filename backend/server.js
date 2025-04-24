@@ -6,13 +6,15 @@ import productRouters from "./routers/products.routes.js"
 
 dotenv.config()
 
+const PORT = process.env.PORT
+
 const app = express()
 
 app.use(express.json())
 
 app.use("/api/v1/products", productRouters)
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   connectDB()
-  console.log("server runing at http://localhost:5000")
+  console.log(`server runing at http://localhost:${PORT}`)
 })

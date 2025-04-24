@@ -1,73 +1,19 @@
 import { Router } from "express";
-import { Product } from "./models/product.models.js"
-import mongoose from "mongoose"
+import { getProducts, createProduct, updateProduct, deleteProduct } from "./controllers/product.controller.js";
 
 const router = Router()
 
-
-router.get("/", async (req, res) => {
-  try {
-    const products = await Product.find({})
-    res.status(200).json({ success: true, data: products })
-  } catch (error) {
-    console.log("error in feaching products!", error.message)
-    res.status(500).json({ success: false, message: "Server Error!" })
-  }
-})
-
-// ---------------------------------------------------------------------
-router.post("/", async (req, res) => {
-  const product = req.body
-
-  if (!product.name || !product.price || !product.image) {
-    return res.status(400).json({ success: false, message: "Please Provide all fields!" })
-  }
-
-  const newProduct = new Product(product)
-
-  try {
-    await newProduct.save()
-    res.status(201).json({ success: true, data: newProduct })
-  } catch (error) {
-    console.error("Error create in product : ", error.message)
-    res.status(500).json({ success: false, message: "Server FAILED!" })
-  }
-
-})
+//-----------------------------------------------------------------------
+router.get("/", getProducts)
 
 // -----------------------------------------------------------------------
-router.put("/:id", async (req, res) => {
-  const { id } = req.params
-
-  const products = req.body
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ success: false, message: "invalid product id" })
-  }
-
-
-  try {
-    const updetedProduct = await Product.findByIdAndUpdate(id, products, { new: true })
-    res.status(200).json({ success: true, data: updetedProduct })
-  } catch (error) {
-    console.log("error in updation products", error.message)
-    res.status(500).json({ success: true, message: "server error" })
-  }
-})
+router.post("/", createProduct)
 
 // -----------------------------------------------------------------------
-router.delete("/:id", async (req, res) => {
-  const { id } = req.params
-  console.log("id", id)
+router.put("/:id", updateProduct)
 
-  try {
-    await Product.findByIdAndDelete(id)
-    res.status(200).json({ success: true, message: "Product deleted successfuly." })
-  } catch (error) {
-    console.log("Error  indeleting produc :", error.message)
-    res.status(404).json({ success: false, message: "product not found!" })
-  }
-})
+// -----------------------------------------------------------------------
+router.delete("/:id", deleteProduct)
 
 
 export default router
