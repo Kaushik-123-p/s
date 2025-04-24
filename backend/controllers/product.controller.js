@@ -1,4 +1,4 @@
-import { Product } from "../../models/product.models.js"
+import { Product } from "../models/product.models.js"
 import mongoose from "mongoose"
 
 
