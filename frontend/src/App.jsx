@@ -7,13 +7,15 @@ function App() {
 
 
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create" element={<CreatePage />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="bg-gray-900">
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/create" element={<CreatePage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   )
 }
 
