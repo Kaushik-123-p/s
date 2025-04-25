@@ -1,1 +1,1 @@
-export const { DB_NAME } = "smartcart"
+export const DB_NAME = "smartcart"

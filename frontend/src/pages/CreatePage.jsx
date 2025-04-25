@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useProductStore } from '../store/product'
 
 const CreatePage = () => {
 
@@ -11,8 +12,12 @@ const CreatePage = () => {
     }
   )
 
-  const addProductButton = () => {
-    console.log(newProduct)
+  const { createProduct } = useProductStore()
+
+  const addProductButton = async () => {
+    const { success, message } = await createProduct(newProduct)
+    console.log("success : ", success)
+    console.log("message : ", message)
   }
 
   return (
