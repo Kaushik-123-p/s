@@ -7,7 +7,7 @@ function App() {
 
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 h-screen w-full flex flex-col items-center gap-5 ">
       <BrowserRouter>
         <Navbar />
         <Routes>

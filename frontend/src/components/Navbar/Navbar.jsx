@@ -13,11 +13,11 @@ const Navbar = () => {
 
 
   return (
-    <div className='container mx-auto px-4 min-h-screen border-2 '>
+    <div className='container m-2 px-2 '>
       <div className='flex lg:flex-row items-center justify-between '>
         <Link to={"/"}>
           <div className="flex items-center gap-2 p-4 text-lg lg:text-3xl font-extrabold cursor-pointer">
-            <p className=" text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 hover:text-xl">
+            <p className=" text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500   ">
               PRODUCT STORE
             </p>
             <IoStorefrontOutline className="ml-2  text-blue-600" />
