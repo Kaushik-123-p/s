@@ -8,7 +8,7 @@ function App() {
 
 
   return (
-    <div className="bg-gray-900 h-screen w-full flex flex-col items-center gap-5 ">
+    <div className="bg-gray-900 min-h-screen w-full flex flex-col items-center gap-5 px-4 py-10 ">
       <BrowserRouter>
         <Toaster position="bottom-right" reverseOrder={false} />
         <Navbar />
