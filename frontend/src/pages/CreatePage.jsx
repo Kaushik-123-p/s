@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useProductStore } from '../store/product'
+import toast from 'react-hot-toast'
 
 const CreatePage = () => {
 
@@ -15,9 +16,24 @@ const CreatePage = () => {
   const { createProduct } = useProductStore()
 
   const addProductButton = async () => {
-    const { success, message } = await createProduct(newProduct)
-    console.log("success : ", success)
-    console.log("message : ", message)
+    if (!newProduct.name || !newProduct.price || !newProduct.image) {
+      toast.error("Please fill in all fields.")
+      return
+    }
+
+    try {
+      const { success, message } = await createProduct(newProduct)
+
+      if (!success) {
+        toast.error(message || "Failed to create product.")
+      } else {
+        toast.success("Product created successfully!")
+        setNewProduct({ name: "", price: "", image: "" })
+      }
+    } catch (error) {
+      toast.error("An unexpected error occurred.")
+      console.error(error)
+    }
   }
 
   return (
